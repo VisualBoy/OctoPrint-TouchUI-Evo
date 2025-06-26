@@ -8,7 +8,7 @@ import {
   VerticalAlignTop,
   VerticalAlignBottom 
 } from '@mui/icons-material';
-import { NeumorphicCard, NeumorphicButton } from '../neumorphicComponents';
+import { TouchUiCard, TouchUiButton } from '..'; // Updated import
 import { useOctoPrintSocket } from '../../contexts/WebSocketContext';
 
 export const QuickControlsWidget: React.FC = () => {
@@ -38,7 +38,7 @@ export const QuickControlsWidget: React.FC = () => {
   };
 
   return (
-    <NeumorphicCard sx={{ p: 2 }}>
+    <TouchUiCard sx={{ p: 2 }}>
       <Typography variant="h6" gutterBottom color="primary">
         Controlli Rapidi
       </Typography>
@@ -49,33 +49,33 @@ export const QuickControlsWidget: React.FC = () => {
           Controlli Stampa
         </Typography>
         <Box sx={{ display: 'flex', gap: 1 }}>
-          <NeumorphicButton
+          <TouchUiButton
             size="small"
             onClick={() => handlePrintControl('start')}
             disabled={isPrinting}
             startIcon={<PlayArrow />}
           >
             Avvia
-          </NeumorphicButton>
+          </TouchUiButton>
           
-          <NeumorphicButton
+          <TouchUiButton
             size="small"
             onClick={() => handlePrintControl('pause')}
             disabled={!isPrinting}
             startIcon={<Pause />}
           >
             Pausa
-          </NeumorphicButton>
+          </TouchUiButton>
           
-          <NeumorphicButton
+          <TouchUiButton
             size="small"
             onClick={() => handlePrintControl('cancel')}
             disabled={!isPrinting}
             startIcon={<Stop />}
-            color="error"
+            color="error" // This prop might need to be handled by TouchUiButton if it's not a standard Button prop
           >
             Stop
-          </NeumorphicButton>
+          </TouchUiButton>
         </Box>
       </Box>
 
@@ -86,49 +86,49 @@ export const QuickControlsWidget: React.FC = () => {
         </Typography>
         <Grid container spacing={1}>
           <Grid item xs={6}>
-            <NeumorphicButton
+            <TouchUiButton
               fullWidth
               size="small"
               onClick={() => handleHomeAxis()}
               startIcon={<Home />}
             >
               Home All
-            </NeumorphicButton>
+            </TouchUiButton>
           </Grid>
           <Grid item xs={6}>
-            <NeumorphicButton
+            <TouchUiButton
               fullWidth
               size="small"
               onClick={() => handleHomeAxis('z')}
               startIcon={<VerticalAlignTop />}
             >
               Home Z
-            </NeumorphicButton>
+            </TouchUiButton>
           </Grid>
           
           {/* Controlli Z semplificati */}
           <Grid item xs={6}>
-            <NeumorphicButton
+            <TouchUiButton
               fullWidth
               size="small"
               onClick={() => handleMove('z', 10)}
               startIcon={<VerticalAlignTop />}
             >
               Z +10
-            </NeumorphicButton>
+            </TouchUiButton>
           </Grid>
           <Grid item xs={6}>
-            <NeumorphicButton
+            <TouchUiButton
               fullWidth
               size="small"
               onClick={() => handleMove('z', -10)}
               startIcon={<VerticalAlignBottom />}
             >
               Z -10
-            </NeumorphicButton>
+            </TouchUiButton>
           </Grid>
         </Grid>
       </Box>
-    </NeumorphicCard>
+    </TouchUiCard>
   );
 };
