@@ -16,9 +16,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { NeumorphicCard, NeumorphicButton } from './neumorphicComponents'; // Importa i componenti neumorfici
+import {
+  Dashboard as DashboardIcon,
+  DeviceThermostat,
+  Gamepad2,
+  Code,
+  Terminal,
+  Settings
+} from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -26,7 +31,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
 }>(({ theme, open }) => ({
   flexGrow: 1,
-  padding: theme.spacing(3),
+  padding: theme.spacing(1), // Ridotto il padding per dare più spazio ai widget
   transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -66,18 +71,28 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
 }));
 
 interface LayoutProps {
   children: ReactNode;
+  currentPage?: string;
+  onPageChange?: (page: string) => void;
 }
 
-export default function PersistentDrawerLeft({ children }: LayoutProps) {
+const menuItems = [
+  { id: 'dashboard', label: 'Dashboard', icon: DashboardIcon },
+  { id: 'temperature', label: 'Temperature', icon: DeviceThermostat },
+  { id: 'controls', label: 'Controlli', icon: Gamepad2 },
+  { id: 'gcode', label: 'G-Code', icon: Code },
+  { id: 'terminal', label: 'Terminale', icon: Terminal },
+  { id: 'settings', label: 'Impostazioni', icon: Settings },
+];
+
+export default function Layout({ children, currentPage = 'dashboard', onPageChange }: LayoutProps) {
   const theme = useTheme();
-  const [open, setOpen] = useState(true); // Drawer aperto di default
+  const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -87,10 +102,25 @@ export default function PersistentDrawerLeft({ children }: LayoutProps) {
     setOpen(false);
   };
 
+  const handleMenuClick = (pageId: string) => {
+    if (onPageChange) {
+      onPageChange(pageId);
+    }
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} sx={{ backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary }}>
+      <AppBar 
+        position="fixed" 
+        open={open} 
+        sx={{ 
+          backgroundColor: theme.palette.background.paper, 
+          color: theme.palette.text.primary,
+          boxShadow: 'none',
+          borderBottom: `1px solid ${theme.palette.divider}`
+        }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -106,6 +136,7 @@ export default function PersistentDrawerLeft({ children }: LayoutProps) {
           </Typography>
         </Toolbar>
       </AppBar>
+      
       <Drawer
         sx={{
           width: drawerWidth,
@@ -113,7 +144,7 @@ export default function PersistentDrawerLeft({ children }: LayoutProps) {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            backgroundColor: theme.palette.background.paper, // Stesso sfondo dell'AppBar per coerenza
+            backgroundColor: theme.palette.background.paper,
             borderRight: `1px solid ${theme.palette.divider}`
           },
         }}
@@ -122,62 +153,53 @@ export default function PersistentDrawerLeft({ children }: LayoutProps) {
         open={open}
       >
         <DrawerHeader>
-          <Typography variant="h6" sx={{ flexGrow: 1, paddingLeft: 1 }}>Menu</Typography>
+          <Typography variant="h6" sx={{ flexGrow: 1, paddingLeft: 1 }}>
+            Menu
+          </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
+        
         <Divider />
+        
         <List>
-          {['Dashboard', 'Temperature', 'Controlli', 'G-Code'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon sx={{color: theme.palette.primary.main}}>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['Terminale', 'Impostazioni'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon sx={{color: theme.palette.primary.main}}>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          {menuItems.map((item) => {
+            const IconComponent = item.icon;
+            const isSelected = currentPage === item.id;
+            
+            return (
+              <ListItem key={item.id} disablePadding>
+                <ListItemButton 
+                  selected={isSelected}
+                  onClick={() => handleMenuClick(item.id)}
+                  sx={{
+                    '&.Mui-selected': {
+                      backgroundColor: theme.palette.primary.main + '20',
+                      '& .MuiListItemIcon-root': {
+                        color: theme.palette.primary.main,
+                      },
+                      '& .MuiListItemText-primary': {
+                        color: theme.palette.primary.main,
+                        fontWeight: 'bold',
+                      },
+                    },
+                  }}
+                >
+                  <ListItemIcon sx={{ color: isSelected ? theme.palette.primary.main : 'inherit' }}>
+                    <IconComponent />
+                  </ListItemIcon>
+                  <ListItemText primary={item.label} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
         </List>
       </Drawer>
+      
       <Main open={open}>
-        <DrawerHeader /> {/* Questo serve per spaziare il contenuto sotto l'AppBar */}
-
-        {/* Contenuto principale passato come children */}
+        <DrawerHeader />
         {children}
-
-        {/* Esempio di utilizzo dei componenti neumorfici */}
-        <Typography variant="h5" sx={{ marginTop: 3, marginBottom: 2 }}>
-          Esempio Componenti Neumorfici
-        </Typography>
-        <NeumorphicCard sx={{ marginBottom: 2 }}>
-          <Typography variant="h6">Card Neumorfica</Typography>
-          <Typography paragraph>
-            Questo è un esempio di NeumorphicCard. Contiene del testo e un pulsante.
-            Notare il bordo sottile per migliorare la definizione.
-          </Typography>
-          <NeumorphicButton variant="contained" sx={{ marginRight: 1 }}>Pulsante Primario</NeumorphicButton>
-          <NeumorphicButton variant="contained" disabled>Pulsante Disabilitato</NeumorphicButton>
-        </NeumorphicCard>
-
-        <NeumorphicCard>
-            <NeumorphicButton>Solo un Pulsante in una Card</NeumorphicButton>
-        </NeumorphicCard>
-
       </Main>
     </Box>
   );

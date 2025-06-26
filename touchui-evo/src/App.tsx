@@ -1,49 +1,85 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import { WebSocketProvider } from './contexts/WebSocketContext';
-import Layout from './components/Layout'; // Importa il componente Layout
-import { Typography } from '@mui/material'; // Per un piccolo test del WebSocket
-import { useOctoPrintSocket } from './contexts/WebSocketContext'; // Per testare il socket
-
-// Componente di test per il WebSocket
-const WebSocketStatusDisplay: React.FC = () => {
-  const { isConnected, lastMessage } = useOctoPrintSocket();
-  return (
-    <div style={{ marginTop: '20px', padding: '10px', backgroundColor: '#444' }}>
-      <Typography variant="caption">
-        Stato WebSocket: {isConnected ? 'Connesso (Simulato)' : 'Disconnesso (Simulato)'}
-      </Typography>
-      <br />
-      <Typography variant="caption" component="pre" sx={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
-        Ultimo Messaggio (Simulato): {lastMessage ? JSON.stringify(lastMessage) : 'Nessuno'}
-      </Typography>
-    </div>
-  );
-};
-
+import Layout from './components/Layout';
+import { Dashboard } from './components/Dashboard';
+import { Typography, Box } from '@mui/material';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('dashboard');
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'dashboard':
+        return <Dashboard />;
+      case 'temperature':
+        return (
+          <Box sx={{ p: 2 }}>
+            <Typography variant="h4" gutterBottom>
+              Controllo Temperature
+            </Typography>
+            <Typography>
+              Pagina dedicata al controllo dettagliato delle temperature (in sviluppo)
+            </Typography>
+          </Box>
+        );
+      case 'controls':
+        return (
+          <Box sx={{ p: 2 }}>
+            <Typography variant="h4" gutterBottom>
+              Controlli Stampante
+            </Typography>
+            <Typography>
+              Pagina per i controlli avanzati della stampante (in sviluppo)
+            </Typography>
+          </Box>
+        );
+      case 'gcode':
+        return (
+          <Box sx={{ p: 2 }}>
+            <Typography variant="h4" gutterBottom>
+              Visualizzatore G-Code
+            </Typography>
+            <Typography>
+              Visualizzatore 3D del G-Code (in sviluppo)
+            </Typography>
+          </Box>
+        );
+      case 'terminal':
+        return (
+          <Box sx={{ p: 2 }}>
+            <Typography variant="h4" gutterBottom>
+              Terminale
+            </Typography>
+            <Typography>
+              Terminale per comunicazione diretta con la stampante (in sviluppo)
+            </Typography>
+          </Box>
+        );
+      case 'settings':
+        return (
+          <Box sx={{ p: 2 }}>
+            <Typography variant="h4" gutterBottom>
+              Impostazioni
+            </Typography>
+            <Typography>
+              Configurazione dell'interfaccia TouchUI (in sviluppo)
+            </Typography>
+          </Box>
+        );
+      default:
+        return <Dashboard />;
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <WebSocketProvider>
         <CssBaseline />
-        <Layout>
-          {/* Il contenuto che vuoi visualizzare all'interno del layout va qui */}
-          <Typography variant="h4" gutterBottom>
-            Benvenuti in TouchUI Remake!
-          </Typography>
-          <Typography paragraph>
-            Questa è l'area contenuti principale. Il layout include una AppBar e un Drawer laterale.
-            Sotto, un piccolo display per lo stato (simulato) del WebSocket.
-          </Typography>
-          <WebSocketStatusDisplay />
-          {/*
-            L'header di esempio che c'era prima è stato rimosso
-            perché ora il Layout gestisce l'AppBar.
-            I componenti Neumorfici di esempio sono già inclusi in fondo al Layout.tsx stesso.
-           */}
+        <Layout currentPage={currentPage} onPageChange={setCurrentPage}>
+          {renderPage()}
         </Layout>
       </WebSocketProvider>
     </ThemeProvider>
