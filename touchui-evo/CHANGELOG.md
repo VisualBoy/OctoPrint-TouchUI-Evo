@@ -1,3 +1,23 @@
+### Stato Attuale e Prossimi Passi
+
+Il lavoro iniziale di setup e configurazione è stato completato con successo, nonostante alcune difficoltà con l'ambiente di esecuzione dei test, che sono state temporaneamente aggirate per procedere con lo sviluppo.
+
+- **Completato:**
+    - Inizializzazione del progetto React + TypeScript (`touchui-remake`).
+    - Installazione delle dipendenze chiave (MUI v5, React Router).
+    - Configurazione del tema globale scuro con accento verde lime.
+    - Implementazione della struttura di base dell'applicazione (Layout, AppBar, Drawer).
+    - Creazione del `WebSocketProvider` e dell'hook `useOctoPrintSocket` per la gestione della connessione.
+    - Creazione dei Widget Base (Temperature, Stato Connessione, Controlli Base) e integrarli nella dashboard
+
+
+- **Prossimi Passi:**
+    1. **Integrazione Drag-and-Drop:** Implementare `React Grid Layout` e `React DnD` per rendere la dashboard pienamente personalizzabile.
+    2. **Integrazione Visualizzatori:** Collegare i componenti `react-gcode-viewer` e `xterm-react` ai dati ricevuti dal WebSocket.
+    3. **Sviluppo Framework Plugin:** Realizzare un prototipo del meccanismo di caricamento dinamico dei componenti React dai plugin.
+
+---
+
 ### Aggiornamento del 2025-06-26 14:47
 
 Implementata la prima fase del dashboard modulare con i widget base. 
