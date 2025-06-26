@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, LinearProgress } from '@mui/material';
-import { NeumorphicCard } from '../neumorphicComponents';
+import { TouchUiCard } from '..'; // Updated import
 import { useOctoPrintSocket } from '../../contexts/WebSocketContext';
 
 interface TemperatureData {
@@ -27,7 +27,7 @@ export const TemperatureWidget: React.FC<TemperatureWidgetProps> = ({ title, tem
   const progressValue = tempData.target > 0 ? (tempData.actual / tempData.target) * 100 : 0;
 
   return (
-    <NeumorphicCard sx={{ p: 2, minHeight: 120 }}>
+    <TouchUiCard sx={{ p: 2, minHeight: 120 }}> {/* Updated component name */}
       <Typography variant="h6" gutterBottom color="primary">
         {title}
       </Typography>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Chip } from '@mui/material';
-import { NeumorphicCard } from '../neumorphicComponents';
+import { TouchUiCard } from '..'; // Updated import
 import { useOctoPrintSocket } from '../../contexts/WebSocketContext';
 
 export const PrinterStatusWidget: React.FC = () => {
@@ -33,7 +33,7 @@ export const PrinterStatusWidget: React.FC = () => {
   };
 
   return (
-    <NeumorphicCard sx={{ p: 2, minHeight: 120 }}>
+    <TouchUiCard sx={{ p: 2, minHeight: 120 }}> {/* Updated component name */}
       <Typography variant="h6" gutterBottom color="primary">
         Stato Stampante
       </Typography>
@@ -56,6 +56,6 @@ export const PrinterStatusWidget: React.FC = () => {
           </Typography>
         </Box>
       </Box>
-    </NeumorphicCard>
+    </TouchUiCard> {/* Updated component name */}
   );
 };

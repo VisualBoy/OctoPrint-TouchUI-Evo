@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, LinearProgress, Chip } from '@mui/material';
-import { NeumorphicCard } from '../neumorphicComponents';
+import { TouchUiCard } from '..'; // Updated import
 import { useOctoPrintSocket } from '../../contexts/WebSocketContext';
 
 export const PrintProgressWidget: React.FC = () => {
@@ -25,7 +25,7 @@ export const PrintProgressWidget: React.FC = () => {
   };
 
   return (
-    <NeumorphicCard sx={{ p: 2, minHeight: 140 }}>
+    <TouchUiCard sx={{ p: 2, minHeight: 140 }}> {/* Updated component name */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Typography variant="h6" color="primary">
           Progresso Stampa
@@ -59,6 +59,6 @@ export const PrintProgressWidget: React.FC = () => {
           Rimanente: {formatTime(progressData.printTimeLeft)}
         </Typography>
       </Box>
-    </NeumorphicCard>
+    </TouchUiCard> {/* Updated component name */}
   );
 };

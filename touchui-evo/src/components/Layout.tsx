@@ -132,7 +132,7 @@ export default function Layout({ children, currentPage = 'dashboard', onPageChan
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            TouchUI Remake
+            TouchUI Evo
           </Typography>
         </Toolbar>
       </AppBar>
