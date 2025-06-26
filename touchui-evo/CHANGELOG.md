@@ -1,3 +1,25 @@
+### Update <YYYY-MM-DD> (Please replace with actual date)
+
+**Feat: Add new reusable UI components**
+
+Added the following new reusable components to `touchui-evo/src/components/`:
+
+*Data Display Components:*
+- **CircularGauge:** SVG-based semi-circle gauge for values like temperature.
+- **StatusIndicatorLight:** Pill/circle-shaped indicator with color changes and pulsing animation for status.
+- **DataCard:** Specialized `TouchUICard` for displaying a key-value pair with an icon.
+
+*Control Components:*
+- **ControlSlider:** Compact MUI Slider wrapper with icon, label, and live value.
+- **ToggleCard:** `TouchUICard` with an icon, label, and MUI Switch for On/Off actions.
+- **FileListItem:** Component for file browser rows with icon, name, metadata, and placeholder for touch gesture support.
+
+**Refactor: Flatten component file structure**
+
+- Refactored the file structure for the new components (`CircularGauge`, `StatusIndicatorLight`, `DataCard`, `ControlSlider`, `ToggleCard`, `FileListItem`) to be flat within the `touchui-evo/src/components/` directory, removing individual subfolders for each. Component files (e.g., `CircularGauge.tsx`) are now directly under `src/components/`.
+
+---
+
 ### Stato Attuale e Prossimi Passi
 
 Il lavoro iniziale di setup e configurazione è stato completato con successo, nonostante alcune difficoltà con l'ambiente di esecuzione dei test, che sono state temporaneamente aggirate per procedere con lo sviluppo.
