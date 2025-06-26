@@ -4,16 +4,23 @@
 
 ---
 
-Refactor: Separate Card and Button components and rename
+**Feat: Add New Reusable UI Components and Flatten Structure**
 
-- Renamed `NeumorphicCard` to `TouchUiCard` and moved it to its own file `TouchUiCard.tsx` (previously `baseComponents.tsx`).
-- Moved `NeumorphicButton` to a new file `TouchUiButton.tsx` and renamed it to `TouchUiButton`.
-- Updated `components/index.ts` to export these components from their new locations.
-- Updated all identified import paths and component usages in widget files (`PrintProgressWidget`, `PrinterStatusWidget`, `QuickControlsWidget`, `TemperatureWidget`) to reflect these changes.
+Added the following new reusable components to `touchui-evo/src/components/`:
 
-This improves modularity by having core components in their own dedicated files.
+#### Data Display Components
 
+* **CircularGauge** – SVG-based semi-circle gauge for values like temperature.
+* **StatusIndicatorLight** – Pill/circle-shaped indicator with color changes and optional pulsing animation for status.
+* **DataCard** – Specialized `TouchUICard` for displaying a key-value pair with an icon.
 
+#### Control Components
+
+* **ControlSlider** – Compact MUI Slider wrapper with icon, label, and live value.
+* **ToggleCard** – `TouchUICard` with icon, label, and MUI Switch for On/Off actions.
+* **FileListItem** – Component for file browser rows with icon, name, metadata, and placeholder for touch gesture support.
+
+Refactored the file structure to a flat layout within `touchui-evo/src/components/`, removing nested subfolders. Updated `CHANGELOG.md` accordingly.
 
 ---
 
@@ -23,21 +30,21 @@ This improves modularity by having core components in their own dedicated files.
 
 **Feat: Apply Glass UI to Base Components and Refactor File Structure**
 
-* Unified the visual style of `NeumorphicCard` and `NeumorphicButton` with a glassmorphism aesthetic, including semi-transparent backgrounds, blur effects, and enhanced borders and shadows.
-* Improved accessibility by updating text color strategies for WCAG AA compliance.
-* Introduced `LIME_GREEN` accents and smoother transitions for interactive states.
-* Centralized color configuration by moving all glass UI tokens to `theme.ts` under `palette.custom`, including a `hexToRgb` helper.
-* Renamed `neumorphicComponents.tsx` to `baseComponents.tsx` and updated `components/index.ts` for centralized exports.
-* Restored and translated comments in `theme.ts` for clarity and maintainability.
+* Unified the visual style of `NeumorphicCard` and `NeumorphicButton` with a glassmorphism aesthetic: semi-transparent backgrounds, blur effects, and enhanced borders/shadows.
+* Improved accessibility by applying WCAG AA-compliant text color strategies.
+* Introduced `LIME_GREEN` accent for hover/active states, with smoother transitions for better UX.
+* Centralized glass UI color tokens in `theme.ts` under `palette.custom`, including `hexToRgb` helper for generating `limeGlowColor`.
+* Renamed `neumorphicComponents.tsx` to `baseComponents.tsx`.
+* Updated `components/index.ts` to handle centralized exports.
+* Restored and translated original comments in `theme.ts`.
 
 ---
 
 **Refactor: Separate Card and Button Components and Rename**
 
-* Extracted `NeumorphicCard` and `NeumorphicButton` into standalone files, renaming them to `TouchUiCard.tsx` and `TouchUiButton.tsx`, respectively.
-* Updated imports and usage across all widget files to reflect new file paths and component names.
-* These changes improve modularity and make the component structure more maintainable and scalable.
-
+* Renamed and relocated `NeumorphicCard` to `TouchUiCard.tsx` and `NeumorphicButton` to `TouchUiButton.tsx`.
+* Updated all widget file imports (`PrintProgressWidget`, `PrinterStatusWidget`, `QuickControlsWidget`, `TemperatureWidget`) accordingly.
+* These changes enhance modularity and future scalability by isolating core components.
 
 ---
 
@@ -45,36 +52,39 @@ This improves modularity by having core components in their own dedicated files.
 
 ---
 
-* Updated `README.md` with an English description of the project.
-* Improved drag-and-drop support on touch devices by integrating `react-dnd-touch-backend`.
-* Implemented dashboard state persistence (widget layout and active widgets) using `localStorage`. This allows users to keep their custom configurations between sessions.
-* The "Drag-and-Drop Integration" item in the previous "Next Steps" was completed and removed.
-* The items "Implement react-dnd-touch-backend" and "Persist layout in localStorage" from the previous "Suggested Next Steps" were completed.
+* Updated `README.md` with an English project description.
+* Enhanced drag-and-drop support on touch devices using `react-dnd-touch-backend`.
+* Implemented persistent dashboard state (layout and widget status) via `localStorage`, preserving user configurations across sessions.
+* Marked the "Drag-and-Drop Integration" item as completed and removed it from the "Next Steps".
+* Completed the "Implement react-dnd-touch-backend" and "Persist layout in localStorage" items from previous "Suggested Next Steps".
 
-###### Update of 2025-06-26 14:47
+---
+
+### Update of 2025-06-26 14:47
+
+---
 
 **Implemented Phase One of the Modular Dashboard with Base Widgets**
 
-## **Implemented Widgets:**
+#### Implemented Widgets
 
 1. **TemperatureWidget** – Displays current and target temperature with progress bar.
 2. **PrintProgressWidget** – Shows print progress and timing.
 3. **PrinterStatusWidget** – Displays printer status with visual indicators.
 4. **QuickControlsWidget** – Quick access controls for printing and axis movement.
 
-## **Responsive Dashboard:**
+#### Responsive Dashboard
 
 * Uses **React Grid Layout** for grid management.
 * Responsive layout for desktop, tablet, and mobile.
-* Edit mode for reorganizing widgets.
+* Edit mode to reorganize widgets.
 * Drag & drop support to reposition elements.
 
-## **Key Features:**
+#### Key Features
 
-* **WebSocket Integration**: All widgets update in real time.
-* **Neumorphic Design**: Consistent with the defined theme.
-* **Responsive**: Automatically adapts to different devices.
-* **Modular**: Easy to add new widgets.
+* **WebSocket Integration** – Real-time updates for all widgets.
+* **Neumorphic Design** – Consistent with defined theme.
+* **Responsive** – Adapts automatically to various devices.
+* **Modular** – Easily extendable with new widgets.
 
-##
-
+---
