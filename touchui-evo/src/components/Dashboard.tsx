@@ -60,6 +60,17 @@ const availableWidgets: DashboardWidget[] = [
 export const Dashboard: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const { addNotification } = useNotification(); // Use the hook
+
+  useEffect(() => {
+    // Example notification when dashboard mounts
+    addNotification({
+      message: 'Welcome to the Dashboard!',
+      severity: 'info',
+      title: 'Hello!',
+      duration: 5000, // 5 seconds
+    });
+  }, [addNotification]);
   
   const [isEditMode, setIsEditMode] = useState(false);
   const [activeWidgets, setActiveWidgets] = useState<string[]>(() => {
