@@ -1,25 +1,60 @@
-### Stato Attuale e Prossimi Passi
+### Update of 2025-06-26 19:30
 
-Il lavoro iniziale di setup e configurazione è stato completato con successo, nonostante alcune difficoltà con l'ambiente di esecuzione dei test, che sono state temporaneamente aggirate per procedere con lo sviluppo.
+Add StatusIndicatorLight and DataCard components (Phase 2)
 
-- **Completato:**
-    - Inizializzazione del progetto React + TypeScript (`touchui-remake`).
-    - Installazione delle dipendenze chiave (MUI v5, React Router).
-    - Configurazione del tema globale scuro con accento verde lime.
-    - Implementazione della struttura di base dell'applicazione (Layout, AppBar, Drawer).
-    - Creazione del `WebSocketProvider` e dell'hook `useOctoPrintSocket` per la gestione della connessione.
-    - Creazione dei Widget Base (Temperature, Stato Connessione, Controlli Base) e integrarli nella dashboard.
-    - Aggiornamento `README.md` con descrizione del progetto in inglese.
-    - Integrazione di `react-dnd-touch-backend` per migliorare il supporto touch nelle interazioni drag-and-drop sulla dashboard.
-    - Implementazione della persistenza del layout della dashboard (posizioni e dimensioni dei widget) e dei widget attivi nel `localStorage`.
+- Added `StatusIndicatorLight` component:
+    
+    - Displays a small circle or pill shaped indicator.
+    - Color changes based on `status` prop (success, warning, error, neutral, connecting).
+    - Supports an optional pulsing animation.
+    - Colors are sourced from `theme.palette.custom`.
+    - Added new status colors to `theme.ts` and updated type augmentations.
+- Added `DataCard` component:
+    
+    - A specialized card based on `NeumorphicCard` for displaying a key-value pair with an optional icon.
+    - Uses `NeumorphicCard` for the glass effect background.
+    - Arranges icon, label (caption), and value (h5) in a centered column.
+    - Supports a `variant='highlight'` to emphasize data with primary theme color.
+    - Leverages MUI `Box` and `Typography` for internal layout and styling.
+    
+    ---
+    
+    Feat: Apply Glass UI to Base Components and Refactor File Structure
+    
+- Renamed `neumorphicComponents.tsx` to `baseComponents.tsx`.
+    
+- Created `components/index.ts` for centralized component exports.
+    
+- Updated `NeumorphicCard` in `baseComponents.tsx` to a glassmorphism style:
+    
+    - Semi-transparent background with blur.
+    - Updated border and shadow for a 'lifted glass' effect.
+- Updated `NeumorphicButton` in `baseComponents.tsx` to a glassmorphism style:
+    
+    - Similar glass background, border, and shadow.
+    - Text color strategy for WCAG AA contrast (default: text.primary).
+    - LIME\_GREEN accent used for hover/active states (border & glow).
+    - Enhanced transitions for a smoother feel.
+- Centralized glass UI colors in `theme.ts` under `palette.custom`:
+    
+    - Added type augmentations for the custom palette.
+    - Moved `hexToRgb` helper to `theme.ts` for `limeGlowColor` generation.
+    - `NeumorphicCard` and `NeumorphicButton` now use these theme variables.
+- Restored and translated original comments in `theme.ts`.
+    
+- Updated `components/index.ts` to export from `baseComponents.tsx`.
+    
 
+---
 
-- **Prossimi Passi:**
-    1. **Integrazione Visualizzatori:** Collegare i componenti `react-gcode-viewer` e `xterm-react` ai dati ricevuti dal WebSocket.
-    2. **Sviluppo Framework Plugin:** Realizzare un prototipo del meccanismo di caricamento dinamico dei componenti React dai plugin.
-    3. **Aggiungere più widget** (File Manager, Webcam, ecc.) - *derivato dai "Prossimi Passi Suggeriti" precedenti*.
-    4. **Integrazione con OctoPrint API** reale - *derivato dai "Prossimi Passi Suggeriti" precedenti*.
+Refactor: Separate Card and Button components and rename
 
+- Renamed `NeumorphicCard` to `TouchUiCard` and moved it to its own file `TouchUiCard.tsx` (previously `baseComponents.tsx`).
+- Moved `NeumorphicButton` to a new file `TouchUiButton.tsx` and renamed it to `TouchUiButton`.
+- Updated `components/index.ts` to export these components from their new locations.
+- Updated all identified import paths and component usages in widget files (`PrintProgressWidget`, `PrinterStatusWidget`, `QuickControlsWidget`, `TemperatureWidget`) to reflect these changes.
+
+This improves modularity by having core components in their own dedicated files.
 
 ---
 
