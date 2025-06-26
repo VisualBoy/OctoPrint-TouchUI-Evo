@@ -7,9 +7,20 @@
     "url": "git://github.com/BillyBlaze/OctoPrint-TouchUI.git"
   },
   "dependencies": {
-    "virtual-keyboard": "https://github.com/Mottie/Keyboard/archive/v1.27.2.tar.gz"
+    "@mui/joy": "^5.0.0-beta.52",
+    "@xterm/addon-attach": "^0.11.0",
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/xterm": "^5.5.0",
+    "react-gcode-viewer": "^2.2.4",
+    "recharts": "^3.0.0",
+    "three": "^0.149.0",
+    "uuid": "^11.1.0",
+    "virtual-keyboard": "https://github.com/Mottie/Keyboard/archive/v1.27.2.tar.gz",
+    "xterm-react": "^1.0.0"
   },
   "devDependencies": {
+    "@types/recharts": "^1.8.29",
+    "@types/uuid": "^10.0.0",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
@@ -24,7 +35,6 @@
     "keyboard": "https://github.com/Mottie/Keyboard/archive/v1.27.2.tar.gz",
     "through2": "^4.0.2"
   },
-  "optionalDependencies": {},
   "engines": {
     "node": "*"
   }

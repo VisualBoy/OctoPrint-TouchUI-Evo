@@ -3,6 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import { WebSocketProvider } from './contexts/WebSocketContext';
+import { NotificationProvider } from './contexts/NotificationContext'; // Import NotificationProvider
 import Layout from './components/Layout';
 import { Dashboard } from './components/Dashboard';
 import { Typography, Box } from '@mui/material';
@@ -77,10 +78,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <WebSocketProvider>
-        <CssBaseline />
-        <Layout currentPage={currentPage} onPageChange={setCurrentPage}>
-          {renderPage()}
-        </Layout>
+        <NotificationProvider> {/* Ensure NotificationProvider wraps Layout */}
+          <CssBaseline /> {/* CssBaseline can be here or inside Layout if preferred */}
+          <Layout currentPage={currentPage} onPageChange={setCurrentPage}>
+            {renderPage()}
+          </Layout>
+        </NotificationProvider>
       </WebSocketProvider>
     </ThemeProvider>
   );

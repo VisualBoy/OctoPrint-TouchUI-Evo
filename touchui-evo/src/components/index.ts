@@ -6,5 +6,7 @@ export * from './StatusIndicatorLight';
 export * from './DataCard';
 export * from './ControlSlider';
 export * from './ToggleCard';
+export * from './LineChartCard';
+export * from './WebcamCard';
 export * from './FileListItem';
 // Example: export * from './MyComponent';
