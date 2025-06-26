@@ -4,6 +4,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.1.2",
     "@mui/material": "^7.1.2",
+    "react-dnd-touch-backend": "^16.0.1",
     "react-router-dom": "^7.6.2"
   }
 }
