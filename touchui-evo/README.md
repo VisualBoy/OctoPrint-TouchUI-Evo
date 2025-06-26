@@ -1,22 +1,87 @@
-# TouchUI Evo
+# 🖲️ TouchUI Evo
 
-TouchUI Evo is a modern, responsive, and customizable web interface for controlling 3D printers, likely designed as a successor or evolution of a previous TouchUI project. It's built with React and TypeScript, featuring a dark theme with lime green accents.
+**TouchUI Evo** is a modern, responsive, and highly customizable web interface for controlling 3D printers.
+Built with **React** and **TypeScript**, it features a dark theme with lime green accents and is designed as a next-generation replacement for the now-abandoned [TouchUI by BillyBlaze](https://github.com/BillyBlaze/OctoPrint-TouchUI).
 
-## Key Features:
+---
 
-*   **Real-time Updates:** Utilizes WebSockets to display live data from the printer, such as temperatures, print progress, and printer status.
-*   **Modular Dashboard:** The interface is based on a customizable dashboard composed of various widgets.
-    *   **Widget-based System:** Includes widgets for temperature monitoring, print progress, printer status, and quick controls (e.g., print, axis movement).
-    *   **Drag-and-Drop Customization:** Users can rearrange widgets on the dashboard to fit their preferences using drag-and-drop functionality (powered by React Grid Layout and React DnD).
-    *   **Responsive Design:** The layout adapts to different screen sizes, ensuring usability on desktops, tablets, and mobile devices.
-*   **Plugin Framework (Planned):** Aims to support a plugin system for dynamically loading custom React components to extend functionality.
-*   **G-code Visualization (Planned):** Integration with `react-gcode-viewer` to display G-code.
-*   **Terminal Integration (Planned):** Integration with `xterm-react` for terminal access.
+## ✨ Key Features
 
-## Project Goals:
+* 🔄 **Real-time Updates**
+  Uses **WebSockets** to stream live data from the printer, such as temperatures, print progress, and status.
 
-*   To provide a user-friendly and visually appealing interface for 3D printer control.
-*   To offer a high degree of customization through a modular dashboard and plugin architecture.
-*   To leverage modern web technologies for a responsive and real-time experience.
+* 🧩 **Modular Dashboard**
+  The interface is built from a set of customizable widgets:
 
-This project appears to be under active development, with a focus on integrating with OctoPrint or a similar 3D printer control system.
+  * Temperature monitoring
+  * Print progress
+  * Printer status
+  * Quick controls (e.g., axis movement, start/stop print)
+  * 📦 *Drag-and-drop layout* using `react-grid-layout` and `react-dnd`.
+
+* 📱 **Responsive Design**
+  Works seamlessly on desktops, tablets, and mobile devices.
+
+* 🔌 **Plugin Architecture** *(planned)*
+  Support for dynamically loading custom React components to extend functionality.
+
+* 📈 **G-code Viewer Integration** *(planned)*
+  Integration with [`react-gcode-viewer`](https://github.com/canvasketchup/react-gcode-viewer) for live G-code visualization.
+
+* 💻 **Terminal Access** *(planned)*
+  Embedded terminal support via [`xterm-react`](https://github.com/xtermjs/xterm.js).
+
+---
+
+## 🖼️ UI Previews
+
+> 📸 *Screenshots and demo GIFs coming soon.*
+
+```
+[ Insert Screenshot: Full Dashboard View ]
+[ Insert Screenshot: Mobile Layout Example ]
+[ Insert GIF: Drag & Drop Widget Customization ]
+[ Insert Screenshot: Temperature Widget Expanded ]
+```
+
+*Want to contribute visual material? Open a pull request with screenshots from your setup!*
+
+---
+
+## 🎯 Project Goals
+
+* Provide a modern, user-friendly, and visually appealing UI for 3D printer control.
+* Offer deep customization through a widget-based dashboard and plugin architecture.
+* Leverage modern web technologies for a real-time and responsive user experience.
+
+---
+
+## 🔌 Integration Target
+
+TouchUI Evo is designed to integrate with [**OctoPrint**](https://octoprint.org/), the open-source 3D printer management platform.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+Contribution guidelines and a full development setup guide are coming soon.
+In the meantime, feel free to open an [issue](https://github.com/your-repo/issues) or submit a pull request.
+
+---
+
+## 📜 License
+
+Distributed under the **MIT License**.
+See the [LICENSE](./LICENSE) file for details.
+
+---
+
+## 🔗 Related Projects & Resources
+
+* 🧪 Original [TouchUI by BillyBlaze](https://github.com/BillyBlaze/OctoPrint-TouchUI)
+* 🖧 [OctoPrint](https://octoprint.org/)
+* 🧰 [React Grid Layout](https://github.com/react-grid-layout/react-grid-layout)
+* 🎛️ [React DnD](https://react-dnd.github.io/react-dnd/)
+* 📡 [xterm.js](https://xtermjs.org/)
+* 🧭 [GlitchLab Studio](https://glitchlab.xyz)
